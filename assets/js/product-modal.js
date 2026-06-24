@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     espresso: {
       name: "Espresso",
       price: "Rp 18.000",
-      image: "./assets/images/espresso.jpg",
+      image: "./assets/images/espresso.jpeg",
       description:
         "Espresso dibuat dari biji kopi pilihan dengan karakter kuat, aroma intens, dan rasa yang kaya."
     },
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cappuccino: {
       name: "Cappuccino",
       price: "Rp 28.000",
-      image: "./assets/images/cappuccino.jpg",
+      image: "./assets/images/cappuccino.jpeg",
       description:
         "Perpaduan espresso premium, steamed milk, dan foam lembut yang menghasilkan rasa seimbang."
     },
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     latte: {
       name: "Signature Latte",
       price: "Rp 30.000",
-      image: "./assets/images/latte.jpg",
+      image: "./assets/images/latte.jpeg",
       description:
         "Minuman favorit dengan espresso berkualitas tinggi dan susu creamy yang lembut."
     }
