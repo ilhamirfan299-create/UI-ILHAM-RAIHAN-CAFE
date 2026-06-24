@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artisan Bean Coffee Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: Inter, sans-serif; background: #faf9f6; }
+    h1, h2, h3, h4, .brand { font-family: Poppins, sans-serif; }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(75, 54, 33, 0.08); }
+    .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .no-scrollbar::-webkit-scrollbar { width: 0; height: 0; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#33210d",
+            "primary-2": "#4b3621",
+            secondary: "#79573f",
+            surface: "#faf9f6",
+            "surface-2": "#f4f3f1",
+            "surface-3": "#efeeeb",
+            text: "#1a1c1a",
+            muted: "#4e453d",
+            border: "#d2c4ba"
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(75,54,33,0.08)"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-text antialiased overflow-x-hidden">
+
+  <header class="sticky top-0 z-50 bg-white/80 glass border-b border-border/40">
+    <div class="max-w-7xl mx-auto px-5 md:px-10 py-4 flex items-center justify-between gap-4">
+      <a href="#" class="brand text-2xl font-bold text-primary tracking-tight">Artisan Bean</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <a href="#about" class="hover:text-primary transition-colors">About</a>
+        <a href="#menu" class="hover:text-primary transition-colors">Menu</a>
+        <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
+        <a href="#order" class="hover:text-primary transition-colors">Order</a>
+      </nav>
+      <a href="#order" class="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-white text-sm font-semibold hover:opacity-90 transition-opacity">
+        Pesan Sekarang
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative min-h-[92vh] flex items-center justify-center">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1800&q=80"
+          alt="Suasana coffee shop"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/45"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto px-5 text-center text-white">
+        <p class="uppercase tracking-[0.35em] text-xs md:text-sm mb-5 text-white/80">Premium Coffee • Cozy Atmosphere</p>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 text-balance">Freshly Brewed, Just for You</h1>
+        <p class="max-w-2xl mx-auto text-base md:text-lg text-white/90 mb-8 leading-8">
+          Nikmati kopi premium dengan suasana hangat, interior modern, dan pengalaman pemesanan yang mudah langsung dari website.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#menu" class="rounded-full bg-white text-primary px-8 py-4 font-semibold hover:scale-[1.01] transition-transform">Lihat Menu</a>
+          <a href="#order" class="rounded-full border border-white/50 bg-white/10 px-8 py-4 font-semibold hover:bg-white/15 transition-colors">Pesan Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-10">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="rounded-3xl border border-border/40 bg-surface shadow-soft p-8">
+            <div class="w-12 h-12 rounded-2xl bg-[#e9dccf] flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-primary">eco</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Premium Beans</h3>
+            <p class="text-muted leading-7">Biji kopi pilihan dari sumber terbaik untuk rasa yang konsisten dan berkualitas.</p>
+          </div>
+          <div class="rounded-3xl border border-border/40 bg-surface shadow-soft p-8">
+            <div class="w-12 h-12 rounded-2xl bg-[#e9dccf] flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-primary">coffee</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Expert Barista</h3>
+            <p class="text-muted leading-7">Diracik oleh barista berpengalaman untuk cita rasa yang seimbang dan elegan.</p>
+          </div>
+          <div class="rounded-3xl border border-border/40 bg-surface shadow-soft p-8">
+            <div class="w-12 h-12 rounded-2xl bg-[#e9dccf] flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-primary">shopping_bag</span>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Easy Ordering</h3>
+            <p class="text-muted leading-7">Pesan langsung dari landing page tanpa ribet, cocok untuk dine-in maupun takeaway.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20">
+      <div class="max-w-7xl mx-auto px-5 md:px-10 grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="uppercase tracking-[0.35em] text-xs text-secondary mb-4">About Us</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">More Than Just Coffee</h2>
+          <p class="text-muted leading-8 mb-6">
+            Kami menghadirkan suasana coffee shop yang hangat, nyaman, dan modern. Tempat yang cocok untuk bekerja, bersantai, maupun berkumpul bersama teman.
+          </p>
+          <div class="flex gap-4">
+            <a href="#menu" class="rounded-full bg-primary text-white px-8 py-4 font-semibold">Explore Menu</a>
+            <a href="#order" class="rounded-full border border-border px-8 py-4 font-semibold text-primary">Order Online</a>
+          </div>
+        </div>
+        <div class="rounded-[2rem] overflow-hidden shadow-soft border border-border/30">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1400&q=80" alt="Interior cafe" class="w-full h-[520px] object-cover">
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-10">
+        <div class="text-center mb-12">
+          <p class="uppercase tracking-[0.35em] text-xs text-secondary mb-4">Gallery</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary">Cafe Atmosphere</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <img class="rounded-3xl h-[380px] w-full object-cover shadow-soft" src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=80" alt="Suasana cafe 1">
+          <img class="rounded-3xl h-[380px] w-full object-cover shadow-soft" src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=1200&q=80" alt="Suasana cafe 2">
+          <img class="rounded-3xl h-[380px] w-full object-cover shadow-soft" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80" alt="Suasana cafe 3">
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="py-20">
+      <div class="max-w-7xl mx-auto px-5 md:px-10">
+        <div class="text-center mb-12">
+          <p class="uppercase tracking-[0.35em] text-xs text-secondary mb-4">Featured Menu</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary">Klik produk untuk detail lebih besar</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <article class="bg-white rounded-[2rem] overflow-hidden shadow-soft border border-border/30 group">
+            <button
+              type="button"
+              class="w-full text-left product-card"
+              data-key="espresso"
+            >
+              <div class="relative">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80" alt="Classic Espresso" class="w-full h-72 object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="text-2xl font-bold text-primary">Classic Espresso</h3>
+                  <span class="text-secondary font-semibold">Rp 18.000</span>
+                </div>
+                <p class="text-muted leading-7 mb-5">A bold, concentrated shot with notes of dark chocolate and toasted almond.</p>
+                <div class="inline-flex items-center gap-2 text-primary font-semibold">
+                  <span>Lihat Detail</span>
+                  <span class="material-symbols-outlined">open_in_new</span>
+                </div>
+              </div>
+            </button>
+          </article>
+
+          <article class="bg-white rounded-[2rem] overflow-hidden shadow-soft border border-border/30 group">
+            <button
+              type="button"
+              class="w-full text-left product-card"
+              data-key="cappuccino"
+            >
+              <div class="relative">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80" alt="Velvet Cappuccino" class="w-full h-72 object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="text-2xl font-bold text-primary">Velvet Cappuccino</h3>
+                  <span class="text-secondary font-semibold">Rp 28.000</span>
+                </div>
+                <p class="text-muted leading-7 mb-5">Equal parts espresso, steamed milk, and dense, sweet microfoam.</p>
+                <div class="inline-flex items-center gap-2 text-primary font-semibold">
+                  <span>Lihat Detail</span>
+                  <span class="material-symbols-outlined">open_in_new</span>
+                </div>
+              </div>
+            </button>
+          </article>
+
+          <article class="bg-white rounded-[2rem] overflow-hidden shadow-soft border border-border/30 group">
+            <button
+              type="button"
+              class="w-full text-left product-card"
+              data-key="latte"
+            >
+              <div class="relative">
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=80" alt="Signature Latte" class="w-full h-72 object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h3 class="text-2xl font-bold text-primary">Signature Latte</h3>
+                  <span class="text-secondary font-semibold">Rp 30.000</span>
+                </div>
+                <p class="text-muted leading-7 mb-5">Our house blend espresso balanced with textured milk and a hint of vanilla bean.</p>
+                <div class="inline-flex items-center gap-2 text-primary font-semibold">
+                  <span>Lihat Detail</span>
+                  <span class="material-symbols-outlined">open_in_new</span>
+                </div>
+              </div>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-10">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="rounded-3xl bg-surface-2 p-8">
+            <h3 class="font-bold text-xl mb-3">Fast Service</h3>
+            <p class="text-muted leading-7">Pesanan diproses cepat untuk dinikmati langsung atau dibawa pulang.</p>
+          </div>
+          <div class="rounded-3xl bg-surface-2 p-8">
+            <h3 class="font-bold text-xl mb-3">Comfort Space</h3>
+            <p class="text-muted leading-7">Area duduk nyaman untuk meeting ringan, belajar, atau santai.</p>
+          </div>
+          <div class="rounded-3xl bg-surface-2 p-8">
+            <h3 class="font-bold text-xl mb-3">Signature Taste</h3>
+            <p class="text-muted leading-7">Rasa khas yang dirancang agar mudah diingat dan bikin repeat order.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order" class="py-20">
+      <div class="max-w-4xl mx-auto px-5 md:px-10">
+        <div class="text-center mb-10">
+          <p class="uppercase tracking-[0.35em] text-xs text-secondary mb-4">Order Online</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-primary">Pesan Kopi Favoritmu</h2>
+        </div>
+        <form class="bg-white rounded-[2rem] shadow-soft border border-border/30 p-6 md:p-10 grid gap-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <input class="w-full rounded-2xl border border-border/60 px-4 py-4 outline-none focus:border-primary" placeholder="Nama">
+            <input class="w-full rounded-2xl border border-border/60 px-4 py-4 outline-none focus:border-primary" placeholder="Nomor WhatsApp">
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <select class="w-full rounded-2xl border border-border/60 px-4 py-4 outline-none focus:border-primary bg-white">
+              <option>Classic Espresso</option>
+              <option>Velvet Cappuccino</option>
+              <option>Signature Latte</option>
+            </select>
+            <input type="number" class="w-full rounded-2xl border border-border/60 px-4 py-4 outline-none focus:border-primary" placeholder="Jumlah">
+          </div>
+          <textarea class="w-full rounded-2xl border border-border/60 px-4 py-4 outline-none focus:border-primary min-h-36" placeholder="Catatan tambahan"></textarea>
+          <button type="button" class="rounded-full bg-primary text-white px-8 py-4 font-semibold justify-self-start hover:opacity-90 transition-opacity">
+            Kirim Pesanan via WhatsApp
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-10 py-10 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+      <div>
+        <div class="brand text-2xl font-bold">Artisan Bean</div>
+        <p class="text-white/70 mt-2">© 2026 Artisan Bean Coffee Shop</p>
+      </div>
+      <p class="text-white/70 max-w-xl">Landing page coffee shop dengan fokus suasana, menu, dan pemesanan online.</p>
+    </div>
+  </footer>
+
+  <!-- Modal / Expanded Product Detail -->
+  <div id="productModal" class="fixed inset-0 z-[100] hidden items-center justify-center px-4 py-6">
+    <div id="modalBackdrop" class="absolute inset-0 bg-black/60"></div>
+
+    <div class="relative w-full max-w-7xl bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-border/30 max-h-[92vh] flex flex-col lg:flex-row">
+      <button id="closeModal" type="button" class="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/90 glass border border-border/40 flex items-center justify-center hover:scale-105 transition-transform">
+        <span class="material-symbols-outlined text-primary">close</span>
+      </button>
+
+      <div class="w-full lg:w-1/2 bg-surface-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 h-full">
+          <div class="relative min-h-[320px] lg:min-h-[50%]">
+            <img id="modalImage1" src="" alt="" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+          <div class="relative min-h-[320px] lg:min-h-[50%] border-t lg:border-t border-border/40">
+            <img id="modalImage2" src="" alt="" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 p-6 md:p-10 lg:p-12 overflow-y-auto no-scrollbar">
+        <p id="modalTag" class="uppercase tracking-[0.35em] text-xs text-secondary mb-4"></p>
+        <h2 id="modalTitle" class="text-4xl md:text-5xl font-bold text-primary mb-4"></h2>
+        <p id="modalSubtitle" class="text-xl text-secondary font-semibold mb-6"></p>
+
+        <div class="flex items-center gap-2 mb-6">
+          <span class="material-symbols-outlined text-amber-600">star</span>
+          <span class="text-sm text-muted">4.9/5 dari pelanggan</span>
+        </div>
+
+        <p id="modalDescription" class="text-muted leading-8 mb-6"></p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+          <div class="rounded-2xl bg-surface-2 p-5">
+            <h3 class="font-bold text-primary mb-2">Tasting Notes</h3>
+            <p id="modalNotes" class="text-muted leading-7"></p>
+          </div>
+          <div class="rounded-2xl bg-surface-2 p-5">
+            <h3 class="font-bold text-primary mb-2">Origin</h3>
+            <p id="modalOrigin" class="text-muted leading-7"></p>
+          </div>
+          <div class="rounded-2xl bg-surface-2 p-5">
+            <h3 class="font-bold text-primary mb-2">Brewing</h3>
+            <p id="modalBrew" class="text-muted leading-7"></p>
+          </div>
+          <div class="rounded-2xl bg-surface-2 p-5">
+            <h3 class="font-bold text-primary mb-2">Price</h3>
+            <p id="modalPrice" class="text-muted leading-7"></p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#order" class="rounded-full bg-primary text-white px-8 py-4 font-semibold text-center">Pesan Sekarang</a>
+          <button id="viewMenuBtn" type="button" class="rounded-full border border-border px-8 py-4 font-semibold text-primary">Kembali ke Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = {
+      espresso: {
+        title: "Classic Espresso",
+        subtitle: "Small, bold, and intense",
+        price: "Rp 18.000",
+        tag: "Espresso Series",
+        description: "A bold, concentrated shot with notes of dark chocolate and toasted almond. Cocok untuk pecinta rasa kuat dan clean finish.",
+        notes: "Dark chocolate, toasted almond, caramel edge.",
+        origin: "Colombia & Ethiopia selection.",
+        brew: "Double shot, extracted 25–30 seconds.",
+        images: [
+          "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80"
+        ]
+      },
+      cappuccino: {
+        title: "Velvet Cappuccino",
+        subtitle: "Creamy texture with latte art",
+        price: "Rp 28.000",
+        tag: "Cappuccino Special",
+        description: "Equal parts espresso, steamed milk, and dense, sweet microfoam. Balanced, smooth, dan terasa premium di setiap tegukan.",
+        notes: "Milk chocolate, hazelnut, soft foam.",
+        origin: "Single-origin blend with rich body.",
+        brew: "Espresso + steamed milk + microfoam finish.",
+        images: [
+          "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80"
+        ]
+      },
+      latte: {
+        title: "Signature Latte",
+        subtitle: "House blend with vanilla touch",
+        price: "Rp 30.000",
+        tag: "House Favorite",
+        description: "Our house blend espresso balanced with textured milk and a hint of vanilla bean. Ringan, lembut, dan cocok untuk minuman harian.",
+        notes: "Vanilla bean, brown sugar, creamy finish.",
+        origin: "House blend roasted for balance.",
+        brew: "Espresso poured over silky steamed milk.",
+        images: [
+          "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=80"
+        ]
+      }
+    };
+
+    const modal = document.getElementById("productModal");
+    const backdrop = document.getElementById("modalBackdrop");
+    const closeBtn = document.getElementById("closeModal");
+    const viewMenuBtn = document.getElementById("viewMenuBtn");
+
+    const modalTitle = document.getElementById("modalTitle");
+    const modalSubtitle = document.getElementById("modalSubtitle");
+    const modalTag = document.getElementById("modalTag");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalNotes = document.getElementById("modalNotes");
+    const modalOrigin = document.getElementById("modalOrigin");
+    const modalBrew = document.getElementById("modalBrew");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalImage1 = document.getElementById("modalImage1");
+    const modalImage2 = document.getElementById("modalImage2");
+
+    function openModal(key) {
+      const p = products[key];
+      if (!p) return;
+
+      modalTitle.textContent = p.title;
+      modalSubtitle.textContent = p.subtitle;
+      modalTag.textContent = p.tag;
+      modalDescription.textContent = p.description;
+      modalNotes.textContent = p.notes;
+      modalOrigin.textContent = p.origin;
+      modalBrew.textContent = p.brew;
+      modalPrice.textContent = p.price;
+      modalImage1.src = p.images[0];
+      modalImage2.src = p.images[1];
+      modalImage1.alt = p.title + " utama";
+      modalImage2.alt = p.title + " detail";
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".product-card").forEach((card) => {
+      card.addEventListener("click", () => openModal(card.dataset.key));
+    });
+
+    backdrop.addEventListener("click", closeModal);
+    closeBtn.addEventListener("click", closeModal);
+    viewMenuBtn.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
+    });
+  </script>
+</body>
+</html>
