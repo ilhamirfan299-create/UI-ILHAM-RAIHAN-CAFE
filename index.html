@@ -9,7 +9,11 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>RAIHAN COFFEE</title>
+    <meta
+        name="theme-color"
+        content="#5B3A29">
+
+    <title>Raihan Coffee | Premium Coffee Experience</title>
 
     <meta
         name="description"
@@ -78,7 +82,9 @@
 
         <div class="container">
 
-            <nav class="navbar">
+            <nav
+                class="navbar"
+                aria-label="Primary navigation">
 
                 <!-- Logo -->
 
@@ -86,15 +92,15 @@
                     href="index.html"
                     class="logo">
 
-                    <img
-                        src="./assets/images/logo.png"
-                        alt="Raihan Coffee">
+                    Raihan Coffee
 
                 </a>
 
                 <!-- Navigation -->
 
-                <nav class="navigation">
+                <nav
+                    class="navigation"
+                    aria-label="Main menu">
 
                     <ul>
 
@@ -152,7 +158,8 @@
 
                     <a
                         href="cart.html"
-                        class="cart-button">
+                        class="cart-button"
+                        aria-label="View cart">
 
                         <i class="ri-shopping-bag-line"></i>
 
@@ -165,7 +172,8 @@
                     </a>
 
                     <button
-                        id="mobile-menu">
+                        id="mobile-menu"
+                        aria-label="Open navigation menu">
 
                         <i class="ri-menu-3-line"></i>
 
@@ -201,8 +209,9 @@
 
             <img
                 src="./assets/images/hero.jpg"
-                alt="Hero"
-                class="hero-image">
+                alt="Raihan Coffee cafe atmosphere"
+                class="hero-image"
+                loading="lazy">
 
             <div class="container">
 
@@ -313,8 +322,9 @@
                     <div class="story-image fade-up">
 
                         <img
-                            src="./assets/images/story.jpg"
-                            alt="Our Story">
+                            src="./assets/images/latte.jpeg"
+                            alt="Barista serving Raihan Coffee latte"
+                            loading="lazy">
 
                     </div>
 
@@ -486,6 +496,153 @@
         </section>
 
     </main>
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
+    <footer>
+
+        <div class="container footer">
+
+            <section class="footer-brand">
+
+                <h3>
+
+                    Raihan Coffee
+
+                </h3>
+
+                <p>
+
+                    Premium coffee experience
+                    with warm service and
+                    carefully brewed drinks.
+
+                </p>
+
+            </section>
+
+            <nav
+                class="footer-menu"
+                aria-label="Footer navigation">
+
+                <h4>
+
+                    Navigation
+
+                </h4>
+
+                <a href="index.html">
+
+                    Home
+
+                </a>
+
+                <a href="menu.html">
+
+                    Menu
+
+                </a>
+
+                <a href="about.html">
+
+                    About
+
+                </a>
+
+                <a href="gallery.html">
+
+                    Gallery
+
+                </a>
+
+            </nav>
+
+            <section class="footer-contact">
+
+                <h4>
+
+                    Contact
+
+                </h4>
+
+                <p>
+
+                    Demak, Central Java
+
+                </p>
+
+                <p>
+
+                    +62 812 3456 7890
+
+                </p>
+
+                <p>
+
+                    hello@raihancoffee.com
+
+                </p>
+
+            </section>
+
+            <section class="footer-social">
+
+                <h4>
+
+                    Social
+
+                </h4>
+
+                <div class="social">
+
+                    <a
+                        href="#"
+                        aria-label="Instagram">
+
+                        <i class="ri-instagram-line"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Facebook">
+
+                        <i class="ri-facebook-line"></i>
+
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="TikTok">
+
+                        <i class="ri-tiktok-line"></i>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </footer>
+
+    <button
+        id="scroll-top"
+        aria-label="Scroll to top">
+
+        <i class="ri-arrow-up-line"></i>
+
+    </button>
+
+    <div
+        id="toast"
+        role="status"
+        aria-live="polite">
+
+    </div>
 
     <script src="./assets/js/storage.js"></script>
     <script src="./assets/js/utils.js"></script>
