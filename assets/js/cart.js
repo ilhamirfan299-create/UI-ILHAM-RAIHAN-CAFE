@@ -7,17 +7,55 @@ SHOPPING CART
 
 const Cart = {
 
-    storageKey: "raihan-coffee-cart",
+    /*
+    ==========================================
+    CONFIG
+    ==========================================
+    */
+
+    storageKey: STORAGE_KEY.CART,
 
     items: [],
 
-    init() {
 
-        const savedCart = localStorage.getItem(this.storageKey);
 
-        this.items = savedCart
-            ? JSON.parse(savedCart)
-            : [];
+    /*
+    ==========================================
+    LOAD CART
+    ==========================================
+    */
+
+    load() {
+
+        this.items =
+
+            Storage.get(
+
+                this.storageKey,
+
+                []
+
+            );
+
+    },
+
+
+
+    /*
+    ==========================================
+    SAVE CART
+    ==========================================
+    */
+
+    save() {
+
+        Storage.set(
+
+            this.storageKey,
+
+            this.items
+
+        );
 
         this.updateBadge();
 
@@ -27,76 +65,122 @@ const Cart = {
 
 
 
-    save() {
+    /*
+    ==========================================
+    RESET CART
+    ==========================================
+    */
 
-        localStorage.setItem(
-            this.storageKey,
-            JSON.stringify(this.items)
-        );
+    reset() {
+
+        this.items = [];
+
+        this.save();
 
     },
 
 
 
+    /*
+    ==========================================
+    ADD PRODUCT
+    ==========================================
+    */
+
     add(productId) {
 
         const product =
+
             ProductService.getById(productId);
 
         if (!product) return;
 
-        const existing =
+        const item =
+
             this.items.find(
-                item => item.id === productId
+
+                cartItem =>
+
+                cartItem.id === productId
+
             );
 
-        if (existing) {
+        if (item) {
 
-            existing.qty++;
+            item.qty++;
 
-        } else {
+        }
+
+        else {
 
             this.items.push({
 
                 id: product.id,
+
                 qty: 1
 
             });
 
         }
 
+        Utils.showToast(
+
+            `${product.name} added to cart`
+
+        );
+
         this.save();
-
-        this.updateBadge();
-
-        this.render();
 
     },
 
 
+
+    /*
+    ==========================================
+    REMOVE PRODUCT
+    ==========================================
+    */
 
     remove(productId) {
 
         this.items =
+
             this.items.filter(
-                item => item.id !== productId
+
+                item =>
+
+                item.id !== productId
+
             );
 
+        Utils.showToast(
+
+            "Product removed"
+
+        );
+
         this.save();
-
-        this.updateBadge();
-
-        this.render();
 
     },
 
 
 
+    /*
+    ==========================================
+    INCREASE QUANTITY
+    ==========================================
+    */
+
     increase(productId) {
 
         const item =
+
             this.items.find(
-                item => item.id === productId
+
+                item =>
+
+                item.id === productId
+
             );
 
         if (!item) return;
@@ -105,26 +189,37 @@ const Cart = {
 
         this.save();
 
-        this.updateBadge();
-
-        this.render();
-
     },
 
 
 
+    /*
+    ==========================================
+    DECREASE QUANTITY
+    ==========================================
+    */
+
     decrease(productId) {
 
         const item =
+
             this.items.find(
-                item => item.id === productId
+
+                item =>
+
+                item.id === productId
+
             );
 
         if (!item) return;
 
-        item.qty--;
+        if (item.qty > 1) {
 
-        if (item.qty <= 0) {
+            item.qty--;
+
+        }
+
+        else {
 
             this.remove(productId);
 
@@ -134,55 +229,56 @@ const Cart = {
 
         this.save();
 
-        this.updateBadge();
-
-        this.render();
-
     },
 
 
+
+    /*
+    ==========================================
+    CLEAR CART
+    ==========================================
+    */
 
     clear() {
 
         this.items = [];
 
+        Utils.showToast(
+
+            "Cart cleared"
+
+        );
+
         this.save();
 
-        this.updateBadge();
+    },
 
-        this.render();
+    /*
+    ==========================================
+    GET ITEMS
+    ==========================================
+    */
+
+    getItems() {
+
+        return this.items;
 
     },
 
 
 
-    getSubtotal() {
-
-        let subtotal = 0;
-
-        this.items.forEach(item => {
-
-            const product =
-                ProductService.getById(item.id);
-
-            if (!product) return;
-
-            subtotal +=
-                product.price * item.qty;
-
-        });
-
-        return subtotal;
-
-    },
-
-
+    /*
+    ==========================================
+    GET TOTAL ITEMS
+    ==========================================
+    */
 
     getTotalItems() {
 
         return this.items.reduce(
 
             (total, item) =>
+
                 total + item.qty,
 
             0
@@ -193,28 +289,324 @@ const Cart = {
 
 
 
-    updateBadge() {
+    /*
+    ==========================================
+    GET SUBTOTAL
+    ==========================================
+    */
 
-        const badge =
-            document.getElementById("cart-count");
+    getSubtotal() {
 
-        if (!badge) return;
+        return this.items.reduce(
 
-        badge.textContent =
-            this.getTotalItems();
+            (subtotal, item) => {
+
+                const product =
+
+                    ProductService.getById(
+
+                        item.id
+
+                    );
+
+                if (!product) {
+
+                    return subtotal;
+
+                }
+
+                return subtotal +
+
+                    (product.price * item.qty);
+
+            },
+
+            0
+
+        );
 
     },
 
 
 
+    /*
+    ==========================================
+    GET TAX
+    ==========================================
+    */
+
+    getTax(rate = 0) {
+
+        return Math.round(
+
+            this.getSubtotal()
+
+            * rate
+
+        );
+
+    },
+
+
+
+    /*
+    ==========================================
+    GET SHIPPING
+    ==========================================
+    */
+
+    getShipping() {
+
+        return 0;
+
+    },
+
+
+
+    /*
+    ==========================================
+    GET DISCOUNT
+    ==========================================
+    */
+
+    getDiscount() {
+
+        return 0;
+
+    },
+
+
+
+    /*
+    ==========================================
+    GET TOTAL
+    ==========================================
+    */
+
+    getTotal() {
+
+        return (
+
+            this.getSubtotal()
+
+            +
+
+            this.getShipping()
+
+            +
+
+            this.getTax()
+
+            -
+
+            this.getDiscount()
+
+        );
+
+    },
+
+    /*
+    ==========================================
+    GET DETAILED ITEMS
+    ==========================================
+    */
+
+    getDetailedItems() {
+
+        return this.items
+
+            .map(item => {
+
+                const product =
+
+                    ProductService.getById(
+
+                        item.id
+
+                    );
+
+                if (!product) return null;
+
+                return {
+
+                    ...item,
+
+                    product,
+
+                    subtotal:
+
+                        product.price *
+
+                        item.qty
+
+                };
+
+            })
+
+            .filter(Boolean);
+
+    },
+
+
+
+    /*
+    ==========================================
+    CREATE CART ITEM
+    ==========================================
+    */
+
+    createCartItem(item) {
+
+        return `
+
+        <article
+            class="cart-card"
+
+            data-product-id="${item.product.id}">
+
+            <div class="cart-image">
+
+                <img
+
+                    src="${item.product.image}"
+
+                    alt="${item.product.name}"
+
+                    loading="lazy">
+
+            </div>
+
+
+
+            <div class="cart-info">
+
+                <span>
+
+                    ${Utils.capitalize(
+
+                        item.product.category
+
+                    )}
+
+                </span>
+
+                <h3>
+
+                    ${item.product.name}
+
+                </h3>
+
+                <p>
+
+                    ${Utils.formatRupiah(
+
+                        item.product.price
+
+                    )}
+
+                </p>
+
+            </div>
+
+
+
+            <div class="cart-quantity">
+
+                <button
+
+                    class="qty-btn"
+
+                    data-action="decrease"
+
+                    data-id="${item.product.id}">
+
+                    −
+
+                </button>
+
+                <span>
+
+                    ${item.qty}
+
+                </span>
+
+                <button
+
+                    class="qty-btn"
+
+                    data-action="increase"
+
+                    data-id="${item.product.id}">
+
+                    +
+
+                </button>
+
+            </div>
+
+
+
+            <div class="cart-subtotal">
+
+                ${Utils.formatRupiah(
+
+                    item.subtotal
+
+                )}
+
+            </div>
+
+
+
+            <button
+
+                class="cart-remove"
+
+                data-action="remove"
+
+                data-id="${item.product.id}"
+
+                aria-label="Remove">
+
+                <i
+
+                    class="ri-delete-bin-line">
+
+                </i>
+
+            </button>
+
+        </article>
+
+        `;
+
+    },
+
+
+
+    /*
+    ==========================================
+    RENDER CART
+    ==========================================
+    */
+
     render() {
 
         const container =
-            document.getElementById("cart-items");
+
+            Utils.$(
+
+                "#cart-items"
+
+            );
 
         if (!container) return;
 
-        if (this.items.length === 0) {
+        const items =
+
+            this.getDetailedItems();
+
+        if (!items.length) {
 
             container.innerHTML = `
 
@@ -228,7 +620,8 @@ const Cart = {
 
                     <p>
 
-                        Start ordering your favorite coffee.
+                        Start ordering your
+                        favorite coffee.
 
                     </p>
 
@@ -242,125 +635,295 @@ const Cart = {
 
         }
 
-        container.innerHTML = "";
+        container.innerHTML =
 
-        this.items.forEach(item => {
+            items
 
-            const product =
-                ProductService.getById(item.id);
+            .map(item =>
 
-            if (!product) return;
+                this.createCartItem(item)
 
-            container.innerHTML += `
+            )
 
-            <article class="cart-card">
-
-                <img
-                    src="${product.image}"
-                    alt="${product.name}">
-
-                <div class="cart-info">
-
-                    <h3>
-
-                        ${product.name}
-
-                    </h3>
-
-                    <p>
-
-                        ${formatRupiah(product.price)}
-
-                    </p>
-
-                </div>
-
-                <div class="cart-qty">
-
-                    <button
-                        onclick="Cart.decrease(${product.id})">
-
-                        -
-
-                    </button>
-
-                    <span>
-
-                        ${item.qty}
-
-                    </span>
-
-                    <button
-                        onclick="Cart.increase(${product.id})">
-
-                        +
-
-                    </button>
-
-                </div>
-
-                <div class="cart-total">
-
-                    ${formatRupiah(
-                        product.price * item.qty
-                    )}
-
-                </div>
-
-                <button
-                    class="cart-remove"
-                    onclick="Cart.remove(${product.id})">
-
-                    ×
-
-                </button>
-
-            </article>
-
-            `;
-
-        });
+            .join("");
 
         this.renderSummary();
+
+        this.bindEvents();
 
     },
 
 
 
+    /*
+    ==========================================
+    RENDER SUMMARY
+    ==========================================
+    */
+
     renderSummary() {
 
         const subtotal =
-            document.getElementById("subtotal");
+
+            Utils.$("#subtotal");
+
+        const tax =
+
+            Utils.$("#tax");
+
+        const shipping =
+
+            Utils.$("#shipping");
+
+        const discount =
+
+            Utils.$("#discount");
 
         const total =
-            document.getElementById("total");
 
-        if (!subtotal || !total) return;
+            Utils.$("#total");
 
-        subtotal.textContent =
-            formatRupiah(
-                this.getSubtotal()
-            );
+        if (subtotal)
 
-        total.textContent =
-            formatRupiah(
-                this.getSubtotal()
-            );
+            subtotal.textContent =
+
+                Utils.formatRupiah(
+
+                    this.getSubtotal()
+
+                );
+
+        if (tax)
+
+            tax.textContent =
+
+                Utils.formatRupiah(
+
+                    this.getTax()
+
+                );
+
+        if (shipping)
+
+            shipping.textContent =
+
+                Utils.formatRupiah(
+
+                    this.getShipping()
+
+                );
+
+        if (discount)
+
+            discount.textContent =
+
+                Utils.formatRupiah(
+
+                    this.getDiscount()
+
+                );
+
+        if (total)
+
+            total.textContent =
+
+                Utils.formatRupiah(
+
+                    this.getTotal()
+
+                );
+
+    },
+
+    /*
+    ==========================================
+    UPDATE BADGE
+    ==========================================
+    */
+
+    updateBadge() {
+
+        const badge =
+
+            Utils.$("#cart-count");
+
+        if (!badge) return;
+
+        badge.textContent =
+
+            this.getTotalItems();
+
+    },
+
+
+
+    /*
+    ==========================================
+    BIND QUANTITY
+    ==========================================
+    */
+
+    bindQuantity() {
+
+        document
+
+            .querySelectorAll(
+
+                ".qty-btn"
+
+            )
+
+            .forEach(button => {
+
+                button.addEventListener(
+
+                    "click",
+
+                    () => {
+
+                    const id = Number(
+
+                        button.dataset.id
+
+                    );
+
+                    const action =
+
+                        button.dataset.action;
+
+                    switch (action) {
+
+                        case "increase":
+
+                            this.increase(id);
+
+                            break;
+
+                        case "decrease":
+
+                            this.decrease(id);
+
+                            break;
+
+                    }
+
+                }
+
+                );
+
+            });
+
+    },
+
+
+
+    /*
+    ==========================================
+    BIND REMOVE
+    ==========================================
+    */
+
+    bindRemove() {
+
+        document
+
+            .querySelectorAll(
+
+                ".cart-remove"
+
+            )
+
+            .forEach(button => {
+
+                button.onclick = () => {
+
+                    this.remove(
+
+                        Number(
+
+                            button.dataset.id
+
+                        )
+
+                    );
+
+                };
+
+            });
+
+    },
+
+
+
+    /*
+    ==========================================
+    BIND CHECKOUT
+    ==========================================
+    */
+
+    bindCheckout() {
+
+        const button =
+
+            Utils.$("#checkout-button");
+
+        if (!button) return;
+
+        button.onclick = () => {
+
+            if (!this.items.length) {
+
+                Utils.showToast(
+
+                    "Cart is empty"
+
+                );
+
+                return;
+
+            }
+
+            window.location.href =
+
+                "checkout.html";
+
+        };
+
+    },
+
+
+
+    /*
+    ==========================================
+    BIND EVENTS
+    ==========================================
+    */
+
+    bindEvents() {
+
+        this.bindQuantity();
+
+        this.bindRemove();
+
+        this.bindCheckout();
+
+    },
+
+
+
+    /*
+    ==========================================
+    INITIALIZE
+    ==========================================
+    */
+
+    init() {
+
+        this.load();
+
+        this.updateBadge();
+
+        this.render();
 
     }
-
-};
-
-
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    () => {
-
-        Cart.init();
-
-    }
-
-);
+}

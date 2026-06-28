@@ -7,54 +7,198 @@ CHECKOUT
 
 const Checkout = {
 
+    /*
+    ==========================================
+    CONFIG
+    ==========================================
+    */
+
     taxRate: 0,
-    serviceRate: 0,
 
-    init() {
+    shippingFee: 0,
 
-        this.renderOrder();
+    discount: 0,
 
-        this.bindEvents();
-
-    },
+    order: null,
 
 
+
+    /*
+    ==========================================
+    BIND EVENTS
+    ==========================================
+    */
 
     bindEvents() {
 
         const form =
-            document.getElementById("checkout-form");
 
-        if (!form) return;
+            Utils.$("#checkout-form");
 
-        form.addEventListener(
+        if (form) {
 
-            "submit",
+            form.addEventListener(
 
-            (event) => {
+                "submit",
 
-                event.preventDefault();
+                event => {
 
-                this.processPayment();
+                    event.preventDefault();
 
-            }
+                    this.processPayment();
 
-        );
+                }
+
+            );
+
+        }
+
+
+
+        const paymentMethod =
+
+            document.querySelectorAll(
+
+                "input[name='payment']"
+
+            );
+
+        paymentMethod.forEach(input => {
+
+            input.addEventListener(
+
+                "change",
+
+                () => {
+
+                    Utils.showToast(
+
+                        `Payment : ${input.value}`
+
+                    );
+
+                }
+
+            );
+
+        });
 
     },
 
 
 
+    /*
+    ==========================================
+    RESET FORM
+    ==========================================
+    */
+
+    reset() {
+
+        const form =
+
+            Utils.$("#checkout-form");
+
+        if (form) {
+
+            form.reset();
+
+        }
+
+    },
+
+    /*
+    ==========================================
+    CREATE CHECKOUT ITEM
+    ==========================================
+    */
+
+    createCheckoutItem(item) {
+
+        return `
+
+        <article
+            class="checkout-item">
+
+            <div class="checkout-image">
+
+                <img
+
+                    src="${item.product.image}"
+
+                    alt="${item.product.name}"
+
+                    loading="lazy">
+
+            </div>
+
+
+
+            <div class="checkout-info">
+
+                <span>
+
+                    ${Utils.capitalize(
+
+                        item.product.category
+
+                    )}
+
+                </span>
+
+                <h3>
+
+                    ${item.product.name}
+
+                </h3>
+
+                <p>
+
+                    Qty : ${item.qty}
+
+                </p>
+
+            </div>
+
+
+
+            <div class="checkout-price">
+
+                ${Utils.formatRupiah(
+
+                    item.subtotal
+
+                )}
+
+            </div>
+
+        </article>
+
+        `;
+
+    },
+
+
+
+    /*
+    ==========================================
+    RENDER ORDER
+    ==========================================
+    */
+
     renderOrder() {
 
         const container =
-            document.getElementById("checkout-items");
+
+            Utils.$("#checkout-items");
 
         if (!container) return;
 
-        container.innerHTML = "";
+        const items =
 
-        if (Cart.items.length === 0) {
+            Cart.getDetailedItems();
+
+        if (!items.length) {
 
             container.innerHTML = `
 
@@ -68,7 +212,8 @@ const Checkout = {
 
                     <p>
 
-                        Please add some coffee first.
+                        Please add your favorite
+                        coffee first.
 
                     </p>
 
@@ -80,96 +225,142 @@ const Checkout = {
 
         }
 
-        Cart.items.forEach(item => {
+        container.innerHTML =
 
-            const product =
-                ProductService.getById(item.id);
+            items
 
-            if (!product) return;
+            .map(item =>
 
-            container.innerHTML += `
+                this.createCheckoutItem(item)
 
-                <div class="checkout-item">
+            )
 
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}">
-
-                    <div>
-
-                        <h3>
-
-                            ${product.name}
-
-                        </h3>
-
-                        <p>
-
-                            Qty : ${item.qty}
-
-                        </p>
-
-                    </div>
-
-                    <strong>
-
-                        ${formatRupiah(
-                            product.price * item.qty
-                        )}
-
-                    </strong>
-
-                </div>
-
-            `;
-
-        });
-
-        this.renderSummary();
+            .join("");
 
     },
 
 
+
+    /*
+    ==========================================
+    RENDER SUMMARY
+    ==========================================
+    */
 
     renderSummary() {
 
         const subtotal =
-            Cart.getSubtotal();
+
+            Utils.$("#checkout-subtotal");
+
+        const shipping =
+
+            Utils.$("#checkout-shipping");
 
         const tax =
-            subtotal * this.taxRate;
 
-        const service =
-            subtotal * this.serviceRate;
+            Utils.$("#checkout-tax");
+
+        const discount =
+
+            Utils.$("#checkout-discount");
 
         const total =
-            subtotal + tax + service;
 
-        document.getElementById("checkout-subtotal").textContent =
-            formatRupiah(subtotal);
+            Utils.$("#checkout-total");
 
-        document.getElementById("checkout-tax").textContent =
-            formatRupiah(tax);
 
-        document.getElementById("checkout-service").textContent =
-            formatRupiah(service);
 
-        document.getElementById("checkout-total").textContent =
-            formatRupiah(total);
+        if (subtotal)
+
+            subtotal.textContent =
+
+                Utils.formatRupiah(
+
+                    Cart.getSubtotal()
+
+                );
+
+
+
+        if (shipping)
+
+            shipping.textContent =
+
+                Utils.formatRupiah(
+
+                    Cart.getShipping()
+
+                );
+
+
+
+        if (tax)
+
+            tax.textContent =
+
+                Utils.formatRupiah(
+
+                    Cart.getTax(
+
+                        this.taxRate
+
+                    )
+
+                );
+
+
+
+        if (discount)
+
+            discount.textContent =
+
+                Utils.formatRupiah(
+
+                    Cart.getDiscount()
+
+                );
+
+
+
+        if (total)
+
+            total.textContent =
+
+                Utils.formatRupiah(
+
+                    Cart.getTotal()
+
+                );
 
     },
 
+    /*
+    ==========================================
+    VALIDATE FORM
+    ==========================================
+    */
 
-
-    processPayment() {
+    validateForm() {
 
         const customer =
-            document.getElementById("customer-name").value.trim();
+
+            Utils.$("#customer-name")
+
+            ?.value
+
+            .trim();
 
         const phone =
-            document.getElementById("customer-phone").value.trim();
+
+            Utils.$("#customer-phone")
+
+            ?.value
+
+            .trim();
 
         const payment =
+
             document.querySelector(
 
                 "input[name='payment']:checked"
@@ -178,106 +369,298 @@ const Checkout = {
 
         if (!customer) {
 
-            alert("Please enter your name.");
+            Utils.showToast(
 
-            return;
+                "Please enter your name."
+
+            );
+
+            return false;
 
         }
 
         if (!phone) {
 
-            alert("Please enter your phone number.");
+            Utils.showToast(
 
-            return;
+                "Please enter your phone number."
+
+            );
+
+            return false;
 
         }
 
         if (!payment) {
 
-            alert("Please select payment method.");
+            Utils.showToast(
 
-            return;
+                "Please select payment method."
+
+            );
+
+            return false;
 
         }
 
-        const order = {
-
-            orderId:
-                generateOrderId(),
+        return {
 
             customer,
 
             phone,
 
             payment:
-                payment.value,
 
-            items:
-                Cart.items,
-
-            subtotal:
-                Cart.getSubtotal(),
-
-            total:
-                Cart.getSubtotal(),
-
-            createdAt:
-                new Date()
+                payment.value
 
         };
-
-        localStorage.setItem(
-
-            "raihan-last-order",
-
-            JSON.stringify(order)
-
-        );
-
-        this.showLoading();
 
     },
 
 
 
-    showLoading() {
+    /*
+    ==========================================
+    CREATE ORDER
+    ==========================================
+    */
+
+    createOrder() {
+
+        const form =
+
+            this.validateForm();
+
+        if (!form) return null;
+
+        const order = {
+
+            orderId:
+
+                Utils.generateOrderId(),
+
+            customer:
+
+                form.customer,
+
+            phone:
+
+                form.phone,
+
+            payment:
+
+                form.payment,
+
+            items:
+
+                Cart.getDetailedItems(),
+
+            totalItems:
+
+                Cart.getTotalItems(),
+
+            subtotal:
+
+                Cart.getSubtotal(),
+
+            shipping:
+
+                Cart.getShipping(),
+
+            tax:
+
+                Cart.getTax(
+
+                    this.taxRate
+
+                ),
+
+            discount:
+
+                Cart.getDiscount(),
+
+            total:
+
+                Cart.getTotal(),
+
+            createdAt:
+
+                new Date().toISOString()
+
+        };
+
+        this.order = order;
+
+        return order;
+
+    },
+
+    /*
+    ==========================================
+    PROCESS PAYMENT
+    ==========================================
+    */
+
+    processPayment() {
+
+        const order =
+
+            this.createOrder();
+
+        if (!order) return;
+
+        Storage.set(
+
+            STORAGE_KEY.LAST_ORDER,
+
+            order
+
+        );
+
+        this.loading();
+
+    },
+
+
+
+    /*
+    ==========================================
+    LOADING
+    ==========================================
+    */
+
+    loading() {
 
         const button =
-            document.getElementById("pay-button");
+
+            Utils.$("#pay-button");
 
         if (button) {
 
-            button.disabled = true;
+            Utils.buttonLoading(
 
-            button.innerHTML =
+                button,
 
-                "Processing Payment...";
+                "Processing..."
+
+            );
 
         }
 
+        Utils.showToast(
+
+            "Processing your payment..."
+
+        );
+
         setTimeout(() => {
 
-            Cart.clear();
+            this.redirect();
 
-            window.location.href =
-                "payment-success.html";
+        }, 2000);
 
-        }, 2500);
+    },
+
+
+
+    /*
+    ==========================================
+    REDIRECT
+    ==========================================
+    */
+
+    redirect() {
+
+        this.finishOrder();
+
+    },
+
+    /*
+    ==========================================
+    SAVE HISTORY
+    ==========================================
+    */
+
+    saveHistory() {
+
+        if (!this.order) return;
+
+        const history =
+
+            Storage.get(
+
+                STORAGE_KEY.HISTORY,
+
+                []
+
+            );
+
+        history.unshift(this.order);
+
+        Storage.set(
+
+            STORAGE_KEY.HISTORY,
+
+            history
+
+        );
+
+    },
+
+
+
+    /*
+    ==========================================
+    CLEAR CART
+    ==========================================
+    */
+
+    clearCart() {
+
+        Cart.clear();
+
+    },
+
+
+
+    /*
+    ==========================================
+    FINISH ORDER
+    ==========================================
+    */
+
+    finishOrder() {
+
+        this.saveHistory();
+
+        this.clearCart();
+
+        this.reset();
+
+        window.location.href =
+
+            "payment-success.html";
+
+    },
+
+
+
+    /*
+    ==========================================
+    INITIALIZE
+    ==========================================
+    */
+
+    init() {
+
+        Cart.load();
+
+        this.renderOrder();
+
+        this.renderSummary();
+
+        this.bindEvents();
 
     }
 
-};
-
-
-
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    () => {
-
-        Checkout.init();
-
-    }
-
-);
+    };

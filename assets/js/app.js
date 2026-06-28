@@ -1,13 +1,79 @@
 /*
 ==========================================
 RAIHAN COFFEE
-APPLICATION
+APPLICATION CONTROLLER
 ==========================================
 */
 
 const App = {
 
+    /*
+    ==========================================
+    CONFIG
+    ==========================================
+    */
+
+    name: "Raihan Coffee",
+
+    version: "1.0.0",
+
+    author: "Ilham Muhammad Nur Irfan",
+
+    initialized: false,
+
+
+
+    /*
+    ==========================================
+    APPLICATION READY
+    ==========================================
+    */
+
+    ready(callback) {
+
+        if (
+
+            document.readyState ===
+
+            "loading"
+
+        ) {
+
+            document.addEventListener(
+
+                "DOMContentLoaded",
+
+                callback
+
+            );
+
+        }
+
+        else {
+
+            callback();
+
+        }
+
+    },
+
+
+
+    /*
+    ==========================================
+    INITIALIZE
+    ==========================================
+    */
+
     init() {
+
+        if (this.initialized) return;
+
+        this.initialized = true;
+
+        this.initLoader();
+
+        this.initToast();
 
         this.initNavbar();
 
@@ -19,16 +85,17 @@ const App = {
 
         this.initCheckout();
 
-        this.scrollTop();
+        this.initScrollTop();
 
-        console.log(
-            "%c☕ Raihan Coffee Loaded",
-            "color:#6f4e37;font-size:14px;font-weight:bold;"
-        );
+        this.initAnimation();
+
+        this.initObserver();
+
+        this.initPerformance();
+
+        this.consoleBrand();
 
     },
-
-
 
     /*
     ==========================================
@@ -38,11 +105,13 @@ const App = {
 
     initNavbar() {
 
-        if (typeof Navbar !== "undefined") {
+        if (
 
-            Navbar.init();
+            typeof Navbar === "undefined"
 
-        }
+        ) return;
+
+        Navbar.init();
 
     },
 
@@ -56,15 +125,31 @@ const App = {
 
     initProducts() {
 
-        if (typeof renderFeaturedProducts === "function") {
+        if (
 
-            renderFeaturedProducts();
+            typeof ProductService ===
+
+            "undefined"
+
+        ) return;
+
+        if (
+
+            Utils.$("#featured-products")
+
+        ) {
+
+            ProductService.renderFeatured();
 
         }
 
-        if (typeof renderMenuProducts === "function") {
+        if (
 
-            renderMenuProducts();
+            Utils.$("#product-list")
+
+        ) {
+
+            ProductService.renderAll();
 
         }
 
@@ -80,15 +165,31 @@ const App = {
 
     initGallery() {
 
-        if (typeof renderGalleryPreview === "function") {
+        if (
 
-            renderGalleryPreview();
+            typeof GalleryService ===
+
+            "undefined"
+
+        ) return;
+
+        if (
+
+            Utils.$(".gallery-grid")
+
+        ) {
+
+            GalleryService.renderPreview();
 
         }
 
-        if (typeof renderGalleryPage === "function") {
+        if (
 
-            renderGalleryPage();
+            Utils.$("#gallery-list")
+
+        ) {
+
+            GalleryService.renderGallery();
 
         }
 
@@ -104,11 +205,15 @@ const App = {
 
     initCart() {
 
-        if (typeof Cart !== "undefined") {
+        if (
 
-            Cart.init();
+            typeof Cart ===
 
-        }
+            "undefined"
+
+        ) return;
+
+        Cart.init();
 
     },
 
@@ -122,9 +227,257 @@ const App = {
 
     initCheckout() {
 
-        if (typeof Checkout !== "undefined") {
+        if (
+
+            typeof Checkout ===
+
+            "undefined"
+
+        ) return;
+
+        if (
+
+            Utils.$("#checkout-form")
+
+        ) {
 
             Checkout.init();
+
+        }
+
+    },
+
+    /*
+    ==========================================
+    SCROLL TOP
+    ==========================================
+    */
+
+    initScrollTop() {
+
+        const button =
+
+            Utils.$("#scroll-top");
+
+        if (!button) return;
+
+        window.addEventListener(
+
+            "scroll",
+
+            () => {
+
+                button.classList.toggle(
+
+                    "show",
+
+                    window.scrollY > 400
+
+                );
+
+            }
+
+        );
+
+        button.addEventListener(
+
+            "click",
+
+            Utils.scrollTop
+
+        );
+
+    },
+
+
+
+    /*
+    ==========================================
+    SCROLL ANIMATION
+    ==========================================
+    */
+
+    initAnimation() {
+
+        const elements =
+
+            document.querySelectorAll(
+
+                ".fade-up, .fade-scale"
+
+            );
+
+        if (!elements.length) return;
+
+        const observer =
+
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+
+                            entry.isIntersecting
+
+                        ) {
+
+                            entry.target
+
+                                .classList
+
+                                .add("show");
+
+                        }
+
+                    });
+
+                },
+
+                {
+
+                    threshold: 0.15
+
+                }
+
+            );
+
+        elements.forEach(element =>
+
+            observer.observe(element)
+
+        );
+
+    },
+
+
+
+    /*
+    ==========================================
+    INTERSECTION OBSERVER
+    ==========================================
+    */
+
+    initObserver() {
+
+        const lazyImages =
+
+            document.querySelectorAll(
+
+                "img[loading='lazy']"
+
+            );
+
+        if (!lazyImages.length) return;
+
+        const observer =
+
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+
+                            entry.isIntersecting
+
+                        ) {
+
+                            entry.target.classList.add(
+
+                                "loaded"
+
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+
+                    rootMargin: "100px"
+
+                }
+
+            );
+
+        lazyImages.forEach(image =>
+
+            observer.observe(image)
+
+        );
+
+    },
+
+    /*
+    ==========================================
+    LOADER
+    ==========================================
+    */
+
+    initLoader() {
+
+        const loader =
+
+            Utils.$("#loader");
+
+        if (!loader) return;
+
+        window.addEventListener(
+
+            "load",
+
+            () => {
+
+                loader.classList.add(
+
+                    "hide"
+
+                );
+
+                setTimeout(() => {
+
+                    loader.remove();
+
+                }, 500);
+
+            }
+
+        );
+
+    },
+
+
+
+    /*
+    ==========================================
+    TOAST
+    ==========================================
+    */
+
+    initToast() {
+
+        if (
+
+            !Utils.$("#toast")
+
+        ) {
+
+            const toast =
+
+                document.createElement("div");
+
+            toast.id = "toast";
+
+            document.body.appendChild(
+
+                toast
+
+            );
 
         }
 
@@ -134,63 +487,95 @@ const App = {
 
     /*
     ==========================================
-    SCROLL TO TOP
+    CONSOLE BRANDING
     ==========================================
     */
 
-    scrollTop() {
+    consoleBrand() {
 
-        const button =
-            document.getElementById("scroll-top");
+        console.clear();
 
-        if (!button) return;
+        console.log(
 
-        window.addEventListener("scroll", () => {
+            `%c☕ ${this.name}`,
 
-            if (window.scrollY > 400) {
+            `
+            color:#ffffff;
+            background:#5B3A29;
+            padding:10px 16px;
+            border-radius:6px;
+            font-size:16px;
+            font-weight:bold;
+            `
+        );
 
-                button.classList.add("show");
+        console.table({
 
-            } else {
+            Application:
 
-                button.classList.remove("show");
+                this.name,
+
+            Version:
+
+                this.version,
+
+            Author:
+
+                this.author,
+
+            Status:
+
+                "Production"
+
+        });
+
+    },
+
+
+
+    /*
+    ==========================================
+    PERFORMANCE
+    ==========================================
+    */
+
+    initPerformance() {
+
+        window.addEventListener(
+
+            "load",
+
+            () => {
+
+                const time =
+
+                    Math.round(
+
+                        performance.now()
+
+                    );
+
+                console.info(
+
+                    `🚀 Loaded in ${time} ms`
+
+                );
 
             }
 
-        });
+        );
 
-        button.addEventListener("click", () => {
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        });
-
-    }
-
+    },
 };
-
-
 
 /*
 ==========================================
-PAGE LOADED
+BOOTSTRAP APPLICATION
 ==========================================
 */
 
-document.addEventListener(
+App.ready(() => {
 
-    "DOMContentLoaded",
+    App.init();
 
-    () => {
-
-        App.init();
-
-    }
-
-);
+});
