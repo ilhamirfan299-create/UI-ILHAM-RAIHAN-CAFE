@@ -1,0 +1,68 @@
+.checkout-form {
+    display: grid;
+    gap: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.form-field {
+    display: grid;
+    gap: 9px;
+}
+
+.form-field label,
+.payment-options legend {
+    color: var(--espresso);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.payment-options {
+    display: grid;
+    gap: 12px;
+    border: 0;
+}
+
+.payment-choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: rgba(255, 250, 241, .72);
+    padding: 15px;
+}
+
+.payment-choice input {
+    width: auto;
+}
+
+.success-panel {
+    max-width: 760px;
+    margin: auto;
+    text-align: center;
+}
+
+.success-icon {
+    display: grid;
+    width: 74px;
+    height: 74px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--white);
+    font-size: 2rem;
+    margin: 0 auto 22px;
+}
+
+@media (max-width: 680px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

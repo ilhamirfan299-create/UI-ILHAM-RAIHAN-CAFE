@@ -1,0 +1,14 @@
+@media (max-width: 420px) {
+    .container {
+        width: min(100% - 22px, var(--container-width));
+    }
+
+    .product-content {
+        padding: 20px;
+    }
+
+    #toast {
+        right: 12px;
+        bottom: 12px;
+    }
+}

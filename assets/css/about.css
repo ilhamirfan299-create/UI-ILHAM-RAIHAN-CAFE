@@ -1,0 +1,79 @@
+.about-journal {
+    background: var(--paper);
+}
+
+.about-lede {
+    display: grid;
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    gap: clamp(30px, 7vw, 90px);
+    align-items: start;
+}
+
+.about-lede p {
+    color: var(--espresso);
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.2vw, 3.4rem);
+    line-height: 1.12;
+}
+
+.about-image-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 18px;
+    align-items: end;
+    margin-top: 70px;
+}
+
+.about-image-grid img {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+}
+
+.about-image-grid img:first-child {
+    height: 430px;
+}
+
+.about-image-grid img:last-child {
+    height: 590px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.value-card {
+    display: grid;
+    min-height: 300px;
+    align-content: end;
+    gap: 18px;
+    background: var(--cream);
+    padding: clamp(26px, 4vw, 46px);
+}
+
+.value-card span {
+    color: var(--copper);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.value-card p {
+    color: var(--muted);
+}
+
+@media (max-width: 860px) {
+    .about-lede,
+    .about-image-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image-grid img:first-child,
+    .about-image-grid img:last-child {
+        height: 360px;
+    }
+}

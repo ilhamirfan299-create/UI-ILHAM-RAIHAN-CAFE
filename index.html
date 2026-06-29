@@ -1,649 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="theme-color"
-        content="#5B3A29">
-
-    <title>Raihan Coffee | Premium Coffee Experience</title>
-
-    <meta
-        name="description"
-        content="Raihan Coffee - Premium Coffee Experience">
-
-    <link
-        rel="icon"
-        href="./favicon/favicon.ico">
-
-    <!-- Google Font -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Remix Icon -->
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-        rel="stylesheet">
-
-    <!-- CSS -->
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/global.css">
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/navbar.css">
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/footer.css">
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/home.css">
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/animation.css">
-
-    <link
-        rel="stylesheet"
-        href="./assets/css/responsive.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#352019">
+    <title>Raihan Coffee | Luxury Editorial Coffee Experience</title>
+    <meta name="description" content="Raihan Coffee is a refined coffee house experience in Demak with signature drinks, warm hospitality, and an editorial luxury menu book.">
+    <link rel="icon" href="./favicon/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/navbar.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/animation.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
 </head>
-
 <body>
-
-    <!-- ======================================
-         HEADER
-    ======================================= -->
-
     <header id="header">
-
         <div class="container">
-
-            <nav
-                class="navbar"
-                aria-label="Primary navigation">
-
-                <!-- Logo -->
-
-                <a
-                    href="index.html"
-                    class="logo">
-
-                    Raihan Coffee
-
-                </a>
-
-                <!-- Navigation -->
-
-                <nav
-                    class="navigation"
-                    aria-label="Main menu">
-
+            <nav class="navbar" aria-label="Primary navigation">
+                <a href="index.html" class="logo" aria-label="Raihan Coffee home">Raihan Coffee</a>
+                <div class="navigation" aria-label="Main menu">
                     <ul>
-
-                        <li>
-
-                            <a
-                                href="index.html">
-
-                                Home
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a
-                                href="menu.html">
-
-                                Menu
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a
-                                href="about.html">
-
-                                About
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a
-                                href="gallery.html">
-
-                                Gallery
-
-                            </a>
-
-                        </li>
-
+                        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
                     </ul>
-
-                </nav>
-
-                <!-- Action -->
-
-                <div class="nav-action">
-
-                    <a
-                        href="cart.html"
-                        class="cart-button"
-                        aria-label="View cart">
-
-                        <i class="ri-shopping-bag-line"></i>
-
-                        <span id="cart-count">
-
-                            0
-
-                        </span>
-
-                    </a>
-
-                    <button
-                        id="mobile-menu"
-                        aria-label="Open navigation menu">
-
-                        <i class="ri-menu-3-line"></i>
-
-                    </button>
-
                 </div>
-
+                <div class="nav-action">
+                    <a href="cart.html" class="cart-button" aria-label="View cart">
+                        <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                    <button id="mobile-menu" type="button" aria-label="Open navigation menu">
+                        <i class="ri-menu-3-line" aria-hidden="true"></i>
+                    </button>
+                </div>
             </nav>
-
         </div>
-
     </header>
 
-
-
-    <!-- ======================================
-         MAIN
-    ======================================= -->
-
     <main>
-
-
-
-        <!-- ======================================
-             HERO
-        ======================================= -->
-
-        <section
-            id="hero"
-            class="hero">
-
+        <section id="hero" class="hero" aria-labelledby="home-title">
             <div class="hero-overlay"></div>
-
-            <img
-                src="./assets/images/hero.jpg"
-                alt="Raihan Coffee cafe atmosphere"
-                class="hero-image"
-                loading="lazy">
-
+            <img src="./assets/images/hero.jpg" alt="Warm Raihan Coffee interior and coffee bar atmosphere" class="hero-image">
             <div class="container">
-
                 <div class="hero-content fade-up">
-
-                    <span>
-
-                        Premium Coffee Experience
-
-                    </span>
-
-                    <h1>
-
-                        Freshly Brewed,
-                        <br>
-                        Just For You
-
-                    </h1>
-
-                    <p>
-
-                        Nikmati pengalaman menikmati kopi
-                        premium dengan suasana hangat,
-                        modern, dan nyaman setiap hari.
-
-                    </p>
-
+                    <span>Demak Coffee House</span>
+                    <h1 id="home-title">Coffee, composed like a quiet ritual.</h1>
+                    <p>Raihan Coffee brings Indonesian beans, careful brewing, and a calm editorial atmosphere into one refined coffee house experience.</p>
                     <div class="hero-button">
-
-                        <a
-                            href="menu.html"
-                            class="btn-primary">
-
-                            Explore Menu
-
-                        </a>
-
-                        <a
-                            href="about.html"
-                            class="btn-secondary">
-
-                            Our Story
-
-                        </a>
-
+                        <a href="menu.html" class="btn-primary">Open Menu Book</a>
+                        <a href="about.html" class="btn-secondary">Read The Story</a>
                     </div>
-
                 </div>
-
             </div>
-
         </section>
 
+        <section aria-labelledby="discover-title">
+            <div class="container editorial-strip">
+                <div class="editorial-copy fade-up">
+                    <span class="eyebrow">Discover Raihan</span>
+                    <h2 id="discover-title">A slower room for better coffee.</h2>
+                </div>
+                <div class="editorial-copy fade-up">
+                    <p>Built for conversation, focus, and the first aroma from a fresh cup, Raihan Coffee is designed as a visit worth remembering before the menu is even opened.</p>
+                    <div class="editorial-metrics" aria-label="Raihan Coffee highlights">
+                        <div class="metric"><strong>08</strong><span>Curated signatures</span></div>
+                        <div class="metric"><strong>03</strong><span>Menu chapters</span></div>
+                        <div class="metric"><strong>01</strong><span>Handcrafted mood</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-
-        <!-- ======================================
-             FEATURED MENU
-        ======================================= -->
-
-        <section
-            id="featured-menu">
-
+        <section id="featured-menu" aria-labelledby="featured-title">
             <div class="container">
-
                 <div class="section-title">
-
-                    <span>
-
-                        Featured Menu
-
-                    </span>
-
-                    <h2>
-
-                        Signature Coffee
-
-                    </h2>
-
-                    <p>
-
-                        Menu pilihan terbaik
-                        Raihan Coffee.
-
-                    </p>
-
+                    <span>Signature Selection</span>
+                    <h2 id="featured-title">The first page of the menu.</h2>
+                    <p>Featured drinks selected as a preview of the Raihan Coffee menu book.</p>
                 </div>
-
-                <div
-                    id="featured-products"
-                    class="product-grid">
-
-                </div>
-
-            </div>
-
-        </section>
-                <!-- ======================================
-             STORY PREVIEW
-        ======================================= -->
-
-        <section
-            id="story-preview">
-
-            <div class="container">
-
-                <div class="story">
-
-                    <div class="story-image fade-up">
-
-                        <img
-                            src="./assets/images/latte.jpeg"
-                            alt="Barista serving Raihan Coffee latte"
-                            loading="lazy">
-
-                    </div>
-
-                    <div class="story-content fade-up">
-
-                        <span>
-
-                            Our Story
-
-                        </span>
-
-                        <h2>
-
-                            More Than Just
-                            <br>
-                            A Cup Of Coffee
-
-                        </h2>
-
-                        <p>
-
-                            Raihan Coffee hadir sebagai ruang
-                            untuk menikmati secangkir kopi
-                            berkualitas dengan suasana yang
-                            hangat, modern, dan nyaman bagi
-                            semua kalangan.
-
-                        </p>
-
-                        <p>
-
-                            Setiap biji kopi dipilih secara
-                            berkualitas dan diracik oleh
-                            barista berpengalaman sehingga
-                            menghasilkan cita rasa yang
-                            konsisten dalam setiap sajian.
-
-                        </p>
-
-                        <a
-                            href="about.html"
-                            class="btn-primary">
-
-                            Read Our Story
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ======================================
-             GALLERY PREVIEW
-        ======================================= -->
-
-        <section
-            id="gallery-preview">
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <span>
-
-                        Gallery
-
-                    </span>
-
-                    <h2>
-
-                        Coffee Atmosphere
-
-                    </h2>
-
-                    <p>
-
-                        Nikmati suasana hangat
-                        Raihan Coffee melalui
-                        beberapa momen terbaik.
-
-                    </p>
-
-                </div>
-
-                <div
-                    class="gallery-grid">
-
-                </div>
-
+                <div id="featured-products" class="product-grid" aria-live="polite"></div>
                 <div class="center mt-3">
-
-                    <a
-                        href="gallery.html"
-                        class="btn-secondary">
-
-                        View Gallery
-
-                    </a>
-
+                    <a href="menu.html" class="btn-secondary">Enter Menu Book</a>
                 </div>
-
             </div>
-
         </section>
 
+        <section id="story-preview" aria-labelledby="story-title">
+            <div class="container story">
+                <div class="story-image fade-up">
+                    <img src="./assets/images/latte.jpeg" alt="A creamy latte served at Raihan Coffee" loading="lazy">
+                </div>
+                <div class="story-content fade-up">
+                    <span>Our Story</span>
+                    <h2 id="story-title">Warm service, measured craft, and a cup that feels personal.</h2>
+                    <p>Raihan Coffee is not built around speed. It is built around presence: beans chosen with care, drinks prepared with consistency, and a room that lets every guest settle in.</p>
+                    <p>Each menu item is treated as part of a printed catalogue: origin, mood, texture, and memory presented with restraint.</p>
+                    <a href="about.html" class="btn-primary">Continue Reading</a>
+                </div>
+            </div>
+        </section>
 
-        <!-- ======================================
-             CTA
-        ======================================= -->
-
-        <section
-            id="cta">
-
+        <section id="gallery-preview" aria-labelledby="gallery-title">
             <div class="container">
-
-                <div class="cta">
-
-                    <span>
-
-                        Ready To Taste?
-
-                    </span>
-
-                    <h2>
-
-                        Enjoy Premium Coffee
-                        Every Single Day
-
-                    </h2>
-
-                    <p>
-
-                        Temukan berbagai pilihan kopi,
-                        minuman spesial, dan suasana
-                        terbaik hanya di Raihan Coffee.
-
-                    </p>
-
-                    <div class="cta-button">
-
-                        <a
-                            href="menu.html"
-                            class="btn-primary">
-
-                            Explore Menu
-
-                        </a>
-
-                        <a
-                            href="cart.html"
-                            class="btn-secondary">
-
-                            Order Now
-
-                        </a>
-
-                    </div>
-
+                <div class="section-title">
+                    <span>Atmosphere</span>
+                    <h2 id="gallery-title">Scenes from the coffee room.</h2>
+                    <p>A glimpse of the brewing, seating, details, and quiet moments behind Raihan Coffee.</p>
                 </div>
-
+                <div class="gallery-grid" aria-live="polite"></div>
+                <div class="center mt-3">
+                    <a href="gallery.html" class="btn-secondary">View Gallery</a>
+                </div>
             </div>
-
         </section>
 
+        <section id="cta" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta">
+                    <span>Ready To Visit</span>
+                    <h2 id="cta-title">Choose a drink before the room chooses your pace.</h2>
+                    <p>Open the luxury menu book, collect your favorites, and complete your order when the selection feels right.</p>
+                    <div class="cta-button">
+                        <a href="menu.html" class="btn-primary">Open Menu</a>
+                        <a href="cart.html" class="btn-secondary">View Cart</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- ======================================
-         FOOTER
-    ======================================= -->
-
     <footer>
-
         <div class="container footer">
-
             <section class="footer-brand">
-
-                <h3>
-
-                    Raihan Coffee
-
-                </h3>
-
-                <p>
-
-                    Premium coffee experience
-                    with warm service and
-                    carefully brewed drinks.
-
-                </p>
-
+                <h3>Raihan Coffee</h3>
+                <p>Luxury editorial coffee experience with warm service and carefully brewed drinks.</p>
             </section>
-
-            <nav
-                class="footer-menu"
-                aria-label="Footer navigation">
-
-                <h4>
-
-                    Navigation
-
-                </h4>
-
-                <a href="index.html">
-
-                    Home
-
-                </a>
-
-                <a href="menu.html">
-
-                    Menu
-
-                </a>
-
-                <a href="about.html">
-
-                    About
-
-                </a>
-
-                <a href="gallery.html">
-
-                    Gallery
-
-                </a>
-
+            <nav class="footer-menu" aria-label="Footer navigation">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
             </nav>
-
             <section class="footer-contact">
-
-                <h4>
-
-                    Contact
-
-                </h4>
-
-                <p>
-
-                    Demak, Central Java
-
-                </p>
-
-                <p>
-
-                    +62 812 3456 7890
-
-                </p>
-
-                <p>
-
-                    hello@raihancoffee.com
-
-                </p>
-
+                <h4>Contact</h4>
+                <p>Demak, Central Java</p>
+                <p>+62 812 3456 7890</p>
+                <p>hello@raihancoffee.com</p>
             </section>
-
             <section class="footer-social">
-
-                <h4>
-
-                    Social
-
-                </h4>
-
+                <h4>Social</h4>
                 <div class="social">
-
-                    <a
-                        href="#"
-                        aria-label="Instagram">
-
-                        <i class="ri-instagram-line"></i>
-
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="Facebook">
-
-                        <i class="ri-facebook-line"></i>
-
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="TikTok">
-
-                        <i class="ri-tiktok-line"></i>
-
-                    </a>
-
+                    <a href="#" aria-label="Instagram"><i class="ri-instagram-line" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="ri-facebook-line" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="ri-tiktok-line" aria-hidden="true"></i></a>
                 </div>
-
             </section>
-
         </div>
-
     </footer>
 
-    <button
-        id="scroll-top"
-        aria-label="Scroll to top">
-
-        <i class="ri-arrow-up-line"></i>
-
-    </button>
-
-    <div
-        id="toast"
-        role="status"
-        aria-live="polite">
-
-    </div>
-
+    <button id="scroll-top" class="scroll-top" type="button" aria-label="Scroll to top"><i class="ri-arrow-up-line" aria-hidden="true"></i></button>
+    <div id="toast" role="status" aria-live="polite"></div>
     <script src="./assets/js/storage.js"></script>
     <script src="./assets/js/utils.js"></script>
     <script src="./assets/js/products.js"></script>
@@ -652,7 +176,5 @@
     <script src="./assets/js/cart.js"></script>
     <script src="./assets/js/checkout.js"></script>
     <script src="./assets/js/app.js"></script>
-
 </body>
-
 </html>
